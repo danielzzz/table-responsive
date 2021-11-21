@@ -9,15 +9,15 @@
     <script src="/dist/table-responsive.min.js"></script>
     <title>Test Table Responsive</title>
 </head>
-<body>
+<body class="p-4">
 
-    <table style="width: 100%" class="adaptToMobile">
-        <thead class="hidden sm:table-header-group">
+    <table class="adaptToMobile border w-full sm:w-1/2">
+        <thead class="hidden sm:table-header-group text-left">
             <th id="header1">Col1Header</th>
             <th id="header2">Col2Header</th>
         </thead>
         <tbody class="">
-            <tr class="flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0">
+            <tr class="flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0 bg-gray-100">
                 <td id="td1-1">data 1-1</td>
                 <td id="td1-2">data 1-2</td>
             </tr>
@@ -46,7 +46,12 @@
     </table> 
 
     <script>
-        adaptTableToMobile({});
+        
+        const config = {
+            tables: document.querySelectorAll('table.adaptToMobile'), // default table selector
+            classes: ["inline-block", "sm:hidden", "w-1/4", "font-bold"], // default classes that are added to the element
+        }
+        adaptTableToMobile(config);
     </script>
 </body>
 </html>

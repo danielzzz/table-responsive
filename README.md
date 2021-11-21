@@ -3,6 +3,11 @@
 adapts a table to a responsive format that can be viewed on small screens (mobile)  
 Initially it works with Tailwind CSS but can be adapted to any other framework
 
+big screen table
+![](example/big-screen.png)
+
+small screen  
+![](example/small-screen.png)
 
 ## How it works
 
@@ -14,11 +19,22 @@ Initially it works with Tailwind CSS but can be adapted to any other framework
 
 ## Usage
 
-Download the library and instert it into your page 
-
-(optional) If not using tailwind css configure the class to show/hide the added element
-
+Download the library and insert along with the css file it into your page 
+```
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<script src="/dist/table-responsive.min.js"></script>
+```
 Enable it after the page is loaded
+```
+const config = {
+    // default table selector
+    tables: document.querySelectorAll('table.adaptToMobile'), 
+    // default classes that are added to the element 
+    classes: ["inline-block", "sm:hidden", "w-1/4", "font-bold"], 
+}
+adaptTableToMobile(config);
+```
 
 
 
