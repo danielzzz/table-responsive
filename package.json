@@ -1,6 +1,6 @@
 {
   "name": "table-responsive",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "adapts a table to a responsive format that can be viewed on small screens (mobile)",
   "main": "index.js",
   "scripts": {
