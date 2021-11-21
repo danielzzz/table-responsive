@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../example/style.css"],
+  "sourcesContent": ["/* @media only screen and (min-width: 600px) {\n    .hideOnBiggerScreen {\n      display: none;\n    }\n  } */\n\n\ntable.adaptToMobile {\n    @apply w-full;\n}\n\ntable.adaptToMobile th {\n    @apply hidden sm:table-header-group;\n}\n\ntable.adaptToMobile tr {\n    @apply flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0;\n}\n\n.hideOnBiggerScreen {\n    @apply inline-block sm:hidden;\n}\n"],
+  "mappings": "AAOA,oBACI,eAGJ,uBACI,qCAGJ,uBACI,kFAGJ,oBACI",
+  "names": []
+}

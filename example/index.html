@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <script src="/dist/table-responsive.min.js"></script>
+    <title>Test Table Responsive</title>
+</head>
+<body>
+
+    <table style="width: 100%" class="adaptToMobile">
+        <thead class="hidden sm:table-header-group">
+            <th id="header1">Col1Header</th>
+            <th id="header2">Col2Header</th>
+        </thead>
+        <tbody class="">
+            <tr class="flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0">
+                <td id="td1-1">data 1-1</td>
+                <td id="td1-2">data 1-2</td>
+            </tr>
+            <tr class="flex flex-col sm:table-row">
+                <td id="td2-1">data 2-1</td>
+                <td id="td2-2">data 2-2</td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br>
+    <table style="width: 100%" class="someOtherTable">
+        <thead>
+            <th id="header1a">Col1Header</th>
+            <th id="header2a">Col2Header</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="td1-1a">data 1-1</td>
+                <td id="td1-2a">data 1-2</td>
+            </tr>
+            <tr>
+                <td id="td2-1a">data 2-1</td>
+                <td id="td2-2a">data 2-2</td>
+            </tr>
+        </tbody>
+    </table> 
+
+    <script>
+        adaptTableToMobile({});
+    </script>
+</body>
+</html>

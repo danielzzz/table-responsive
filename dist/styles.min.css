@@ -1,0 +1,2 @@
+table.adaptToMobile{@apply w-full;}table.adaptToMobile th{@apply hidden sm:table-header-group;}table.adaptToMobile tr{@apply flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0;}.hideOnBiggerScreen{@apply inline-block sm:hidden;}
+/*# sourceMappingURL=styles.min.css.map */
