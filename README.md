@@ -1,6 +1,6 @@
 # Tailwind Table Responsive
 
-![flujo de trabajo de ejemplo](https://github.com/danielzzz/tailwind-table-responsive/actions/workflows/npm-publish.yml/badge.svg)  
+![flujo de trabajo de ejemplo](https://github.com/danielzzz/tailwind-table-responsive/actions/workflows/npm-build.yml/badge.svg)  
 
 adapts a table to a responsive format that can be viewed on small screens (mobile)  
 Initially it works with Tailwind CSS but can be adapted to any other framework
