@@ -1,4 +1,4 @@
-const fs = require ('fs');
+const fs = require('fs');
 const adaptTableToMobile = require('../index');
 
 const page = fs.readFileSync('./example/index.html');
@@ -17,14 +17,13 @@ beforeEach(() => {
     style.type = 'text/css';
     style.innerHTML = css;
     head.appendChild(style);
-    
+
     const header1 = document.querySelector('#header1');
     const header2 = document.querySelector('#header2');
 });
 
-it('should add the tag to the table', () => {    
-    const config = {};
-    window.adaptTableToMobile(config);
+it('should add the tag to the table', () => {
+    window.adaptTableToMobile();
 
     let el;
     el = document.querySelector('#td1-1>span');
@@ -38,12 +37,12 @@ it('should add the tag to the table', () => {
     // other table element should not be applied as it doesn't have the default class
     el = document.querySelector('#td1-1a>span');
     expect(el).toBe(null);
-    
+
 
 });
 
 it('should add a custom class', () => {
-    const config = {classes:['hideOnBiggerScreen']};
+    const config = { classes: ['hideOnBiggerScreen'] };
 
     // load css
     const style = document.createElement('style');
@@ -60,7 +59,7 @@ it('should add a custom class', () => {
     expect(el).not.toBe(null);
     expect(el.innerText).toEqual(header1.innerText);
     expect(el.classList.contains('hideOnBiggerScreen')).toBe(true);
-    
+
     // expect(el).not.toBeVisible(); // jsdom not suppor resizing
 
     // jdom does not support this yet
@@ -70,10 +69,10 @@ it('should add a custom class', () => {
     // expect(el).toBeVisible();
 });
 
-it('should add the tag to the table from custom collection', () => {    
+it('should add the tag to the table from custom collection', () => {
     const tables = document.querySelectorAll('table.someOtherTable');
-    
-    const config = {tables};
+
+    const config = { tables };
     window.adaptTableToMobile(config);
 
     let el;
@@ -88,6 +87,6 @@ it('should add the tag to the table from custom collection', () => {
     // other table element should not be applied as it doesn't have the default class
     el = document.querySelector('#td1-1>span');
     expect(el).toBe(null);
-    
+
 
 });

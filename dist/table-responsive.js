@@ -1,20 +1,15 @@
-function adaptTableToMobile({ tables, classes }) {
-  tables = tables || document.querySelectorAll("table.adaptToMobile");
-  classes = classes || ["inline-block", "sm:hidden", "w-1/4", "font-bold"];
+function adaptTableToMobile({
+  tables = document.querySelectorAll("table.adaptToMobile"),
+  classes = ["inline-block", "sm:hidden", "w-1/4", "font-bold"]
+} = {}) {
   tables.forEach((table) => {
-    let headers = table.querySelectorAll("th");
-    let titles = [];
-    headers.forEach((h) => {
-      titles.push(h.textContent);
-    });
-    let rows = table.querySelectorAll("tr");
-    rows.forEach((row) => {
-      let tds = row.querySelectorAll("td");
-      tds.forEach((td, i) => {
-        let t = document.createElement("span");
-        t.className = classes.join(" ");
-        t.textContent = titles[i] + ":";
-        td.prepend(t);
+    const titles = Array.from(table.querySelectorAll("th")).map((th) => th.textContent);
+    table.querySelectorAll("tr").forEach((row) => {
+      row.querySelectorAll("td").forEach((td, i) => {
+        const span = document.createElement("span");
+        span.className = classes.join(" ");
+        span.textContent = `${titles[i]}:`;
+        td.prepend(span);
       });
     });
   });
