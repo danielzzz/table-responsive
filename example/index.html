@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <script src="/dist/table-responsive.min.js"></script>
+    <script src="../dist/table-responsive.min.js"></script>
     <title>Test Table Responsive</title>
 </head>
+
 <body class="p-4">
 
     <table class="adaptToMobile border w-full sm:w-1/2">
@@ -43,10 +45,10 @@
                 <td id="td2-2a">data 2-2</td>
             </tr>
         </tbody>
-    </table> 
+    </table>
 
     <script>
-        
+
         const config = {
             tables: document.querySelectorAll('table.adaptToMobile'), // default table selector
             classes: ["inline-block", "sm:hidden", "w-1/4", "font-bold"], // default classes that are added to the element
@@ -54,4 +56,5 @@
         adaptTableToMobile(config);
     </script>
 </body>
+
 </html>
