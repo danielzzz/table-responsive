@@ -1,21 +1,30 @@
-name: CI
+name: Release
 
 on:
-  pull_request:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  packages: write
+
 jobs:
-  ci:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: yarn
+          registry-url: https://registry.npmjs.org
 
       - name: Install
         run: yarn install --frozen-lockfile
@@ -28,3 +37,9 @@ jobs:
 
       - name: Build
         run: yarn build
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
