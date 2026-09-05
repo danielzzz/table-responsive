@@ -3,6 +3,12 @@
   "version": "1.0.4",
   "description": "adapts a table to a responsive format that can be viewed on small screens (mobile)",
   "main": "index.js",
+  "files": [
+    "dist",
+    "index.js",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "test": "jest",
     "build": "./build.sh",

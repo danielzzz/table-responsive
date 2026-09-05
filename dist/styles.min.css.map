@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../example/style.css"],
-  "sourcesContent": ["table.adaptToMobile {\n    width: 100%;\n}\n\ntable.adaptToMobile .adaptToMobile-label,\ntable.adaptToMobile .hideOnBiggerScreen {\n    font-weight: 700;\n    margin-inline-end: 0.5rem;\n}\n\n/* Keep headers available to assistive tech; hide them visually on small screens */\n@media (max-width: 639px) {\n    table.adaptToMobile thead {\n        position: absolute;\n        width: 1px;\n        height: 1px;\n        padding: 0;\n        margin: -1px;\n        overflow: hidden;\n        clip: rect(0, 0, 0, 0);\n        white-space: nowrap;\n        border: 0;\n    }\n\n    table.adaptToMobile tbody tr {\n        display: block;\n        border-bottom: 1px solid #e5e7eb;\n        margin-bottom: 0.5rem;\n        padding-bottom: 0.5rem;\n    }\n\n    table.adaptToMobile tbody td {\n        display: block;\n    }\n}\n\n@media (min-width: 640px) {\n    table.adaptToMobile .adaptToMobile-label,\n    table.adaptToMobile .hideOnBiggerScreen {\n        display: none;\n    }\n}\n"],
-  "mappings": "AAAA,oBACI,WAGJ,iFAEI,gBACA,wBAIJ,0BACI,0BACI,kBACA,UACA,WAfR,sBAkBQ,gBACA,mBACA,mBACA,SAGJ,6BACI,cACA,gCACA,oBACA,qBAGJ,6BACI,eAIR,0BACI,iFAEI",
-  "names": []
-}
