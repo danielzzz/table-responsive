@@ -1,92 +1,83 @@
 const fs = require('fs');
 const adaptTableToMobile = require('../index');
 
-const page = fs.readFileSync('./example/index.html');
-const css = fs.readFileSync('./example/style.css');
-
-const dom = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 
+const page = fs.readFileSync('./example/index.html', 'utf8');
+
+let header1;
+let header2;
 
 beforeEach(() => {
     document.body.innerHTML = page;
     window.adaptTableToMobile = adaptTableToMobile;
-
-    var head = document.getElementsByTagName('head')[0];
-    style = document.createElement("style");
-    style.type = 'text/css';
-    style.innerHTML = css;
-    head.appendChild(style);
-
-    const header1 = document.querySelector('#header1');
-    const header2 = document.querySelector('#header2');
+    header1 = document.querySelector('#header1');
+    header2 = document.querySelector('#header2');
 });
 
-it('should add the tag to the table', () => {
+it('should add a label span from each column header', () => {
     window.adaptTableToMobile();
 
-    let el;
-    el = document.querySelector('#td1-1>span');
+    let el = document.querySelector('#td1-1 > span');
     expect(el).not.toBe(null);
-    expect(el.innerText).toEqual(header1.innerText);
+    expect(el.textContent).toEqual(`${header1.textContent}:`);
 
-    el = document.querySelector('#td1-2>span');
+    el = document.querySelector('#td1-2 > span');
     expect(el).not.toBe(null);
-    expect(el.innerText).toEqual(header2.innerText);
+    expect(el.textContent).toEqual(`${header2.textContent}:`);
 
-    // other table element should not be applied as it doesn't have the default class
-    el = document.querySelector('#td1-1a>span');
-    expect(el).toBe(null);
+    expect(document.querySelector('#td1-1a > span')).toBe(null);
+});
 
+it('should hide labels from assistive tech', () => {
+    window.adaptTableToMobile();
 
+    const el = document.querySelector('#td1-1 > span');
+    expect(el.getAttribute('aria-hidden')).toBe('true');
+});
+
+it('should not duplicate labels when called twice', () => {
+    window.adaptTableToMobile();
+    window.adaptTableToMobile();
+
+    expect(document.querySelectorAll('#td1-1 > span').length).toBe(1);
+    expect(document.querySelector('#td1-1 > span').textContent).toEqual(`${header1.textContent}:`);
+});
+
+it('should add a default label class', () => {
+    window.adaptTableToMobile();
+
+    const el = document.querySelector('#td1-1 > span');
+    expect(el.classList.contains('adaptToMobile-label')).toBe(true);
 });
 
 it('should add a custom class', () => {
-    const config = { classes: ['hideOnBiggerScreen'] };
+    window.adaptTableToMobile({ classes: ['hideOnBiggerScreen'] });
 
-    // load css
-    const style = document.createElement('style');
-    style.innerText = css;
-    document.body.appendChild(style);
-
-    // jdom does not support this yet
-    window.adaptTableToMobile(config);
-    global.innerWidth = 1024;
-    global.dispatchEvent(new Event('resize'));
-
-    let el;
-    el = document.querySelector('#td1-1>span');
+    const el = document.querySelector('#td1-1 > span');
     expect(el).not.toBe(null);
-    expect(el.innerText).toEqual(header1.innerText);
+    expect(el.textContent).toEqual(`${header1.textContent}:`);
     expect(el.classList.contains('hideOnBiggerScreen')).toBe(true);
-
-    // expect(el).not.toBeVisible(); // jsdom not suppor resizing
-
-    // jdom does not support this yet
-    window.adaptTableToMobile(config);
-    global.innerWidth = 1024;
-    global.dispatchEvent(new Event('resize'));
-    // expect(el).toBeVisible();
 });
 
-it('should add the tag to the table from custom collection', () => {
+it('should add labels to a custom table collection', () => {
     const tables = document.querySelectorAll('table.someOtherTable');
+    window.adaptTableToMobile({ tables });
 
-    const config = { tables };
-    window.adaptTableToMobile(config);
-
-    let el;
-    el = document.querySelector('#td1-1a>span');
+    let el = document.querySelector('#td1-1a > span');
     expect(el).not.toBe(null);
-    expect(el.innerText).toEqual(header1.innerText);
+    expect(el.textContent).toEqual(`${document.querySelector('#header1a').textContent}:`);
 
-    el = document.querySelector('#td1-2a>span');
+    el = document.querySelector('#td1-2a > span');
     expect(el).not.toBe(null);
-    expect(el.innerText).toEqual(header2.innerText);
+    expect(el.textContent).toEqual(`${document.querySelector('#header2a').textContent}:`);
 
-    // other table element should not be applied as it doesn't have the default class
-    el = document.querySelector('#td1-1>span');
-    expect(el).toBe(null);
+    expect(document.querySelector('#td1-1 > span')).toBe(null);
+});
 
+it('should set scope on column headers', () => {
+    window.adaptTableToMobile();
 
+    expect(header1.getAttribute('scope')).toBe('col');
+    expect(header2.getAttribute('scope')).toBe('col');
 });

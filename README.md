@@ -1,43 +1,53 @@
-# Tailwind Table Responsive
+# Table Responsive
 
-![flujo de trabajo de ejemplo](https://github.com/danielzzz/tailwind-table-responsive/actions/workflows/npm-build.yml/badge.svg)  
+![flujo de trabajo de ejemplo](https://github.com/danielzzz/tailwind-table-responsive/actions/workflows/npm-build.yml/badge.svg)
 
-adapts a table to a responsive format that can be viewed on small screens (mobile)  
-Initially it works with Tailwind CSS but can be adapted to any other framework
+Adapts HTML tables to a stacked layout on small screens. Works with plain CSS; no framework required.
 
 big screen table
 ![](example/big-screen.png)
 
-small screen - data is aligned vertically  
+small screen - data is aligned vertically
 ![](example/small-screen.png)
 
 ## How it works
 
-- it scans the page for tables according to a given selector (default table.adaptToMobile)
-- Add a <span> tag in each td cell with the name of the related <th> header
-- Adds a class so you can use a media query to display a better looking table on smaller screens
-- by default it's configured to work with tailwind css, but it can be easily adapted to any other library
-
+- Scans the page for tables (default: `table.adaptToMobile`)
+- Injects a label `<span>` in each cell from the matching `<th>` text (hidden from assistive tech; real headers stay in the accessibility tree)
+- CSS stacks rows on viewports below 640px and shows those labels
+- Optional: pass custom `classes` if you want different label styling hooks
 
 ## Usage
 
-Download the library and insert along with the css file it into your page 
-```
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
+```html
+<link rel="stylesheet" href="/dist/styles.css">
 <script src="/dist/table-responsive.min.js"></script>
+
+<table class="adaptToMobile">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ada</td>
+      <td>ada@example.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  adaptTableToMobile();
+</script>
 ```
-Enable it after the page is loaded
+
+Optional config:
+
+```js
+adaptTableToMobile({
+  tables: document.querySelectorAll('table.adaptToMobile'),
+  classes: ['adaptToMobile-label'],
+});
 ```
-const config = {
-    // default table selector
-    tables: document.querySelectorAll('table.adaptToMobile'), 
-    // default classes that are added to the element 
-    classes: ["inline-block", "sm:hidden", "w-1/4", "font-bold"], 
-}
-adaptTableToMobile(config);
-```
-
-
-
-

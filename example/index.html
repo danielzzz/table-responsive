@@ -5,25 +5,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="../dist/table-responsive.min.js"></script>
     <title>Test Table Responsive</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 1rem;
+        }
+
+        table.adaptToMobile {
+            border: 1px solid #d1d5db;
+            max-width: 32rem;
+        }
+
+        table.adaptToMobile th,
+        table.adaptToMobile td {
+            text-align: left;
+            padding: 0.25rem 0.5rem;
+        }
+
+        table.adaptToMobile tbody tr:nth-child(odd) {
+            background: #f3f4f6;
+        }
+    </style>
 </head>
 
-<body class="p-4">
+<body>
 
-    <table class="adaptToMobile border w-full sm:w-1/2">
-        <thead class="hidden sm:table-header-group text-left">
-            <th id="header1">Col1Header</th>
-            <th id="header2">Col2Header</th>
+    <table class="adaptToMobile">
+        <thead>
+            <tr>
+                <th id="header1">Col1Header</th>
+                <th id="header2">Col2Header</th>
+            </tr>
         </thead>
-        <tbody class="">
-            <tr class="flex flex-col sm:table-row border-b sm:border-0 mb-2 pb-2 sm:mb-0 sm:pb-0 bg-gray-100">
+        <tbody>
+            <tr>
                 <td id="td1-1">data 1-1</td>
                 <td id="td1-2">data 1-2</td>
             </tr>
-            <tr class="flex flex-col sm:table-row">
+            <tr>
                 <td id="td2-1">data 2-1</td>
                 <td id="td2-2">data 2-2</td>
             </tr>
@@ -32,8 +54,10 @@
     <br><br>
     <table style="width: 100%" class="someOtherTable">
         <thead>
-            <th id="header1a">Col1Header</th>
-            <th id="header2a">Col2Header</th>
+            <tr>
+                <th id="header1a">Col1Header</th>
+                <th id="header2a">Col2Header</th>
+            </tr>
         </thead>
         <tbody>
             <tr>
@@ -48,12 +72,7 @@
     </table>
 
     <script>
-
-        const config = {
-            tables: document.querySelectorAll('table.adaptToMobile'), // default table selector
-            classes: ["inline-block", "sm:hidden", "w-1/4", "font-bold"], // default classes that are added to the element
-        }
-        adaptTableToMobile(config);
+        adaptTableToMobile();
     </script>
 </body>
 
