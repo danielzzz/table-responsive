@@ -17,11 +17,25 @@ small screen - data is aligned vertically
 - CSS stacks rows on viewports below 640px and shows those labels
 - Optional: pass custom `classes` if you want different label styling hooks
 
+## Install
+
+npm:
+
+    npm install table-responsive
+
+GitHub Packages:
+
+    npm install @danielzzz/table-responsive
+
+(Configure `@danielzzz:registry=https://npm.pkg.github.com` in `.npmrc` for GPR.)
+
+Built files also appear as assets on each [GitHub Release](https://github.com/danielzzz/table-responsive/releases). For local development run `yarn build` (output is gitignored under `dist/`).
+
 ## Usage
 
 ```html
-<link rel="stylesheet" href="/dist/styles.css">
-<script src="/dist/table-responsive.min.js"></script>
+<link rel="stylesheet" href="node_modules/table-responsive/dist/styles.css">
+<script src="node_modules/table-responsive/dist/table-responsive.min.js"></script>
 
 <table class="adaptToMobile">
   <thead>
@@ -51,3 +65,7 @@ adaptTableToMobile({
   classes: ['adaptToMobile-label'],
 });
 ```
+
+## Releases
+
+CI runs on Node 24. Merges to `main` with conventional commits (`fix:`, `feat:`, etc.) are published by semantic-release to npm (`table-responsive`) and GitHub Packages (`@danielzzz/table-responsive`).
