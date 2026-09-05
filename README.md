@@ -1,6 +1,6 @@
 # Table Responsive
 
-![flujo de trabajo de ejemplo](https://github.com/danielzzz/tailwind-table-responsive/actions/workflows/npm-build.yml/badge.svg)
+[![CI](https://github.com/danielzzz/table-responsive/actions/workflows/ci.yml/badge.svg)](https://github.com/danielzzz/table-responsive/actions/workflows/ci.yml)
 
 Adapts HTML tables to a stacked layout on small screens. Works with plain CSS; no framework required.
 

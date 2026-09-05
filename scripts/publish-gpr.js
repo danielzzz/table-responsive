@@ -17,21 +17,24 @@ pkg.publishConfig = {
 
 fs.writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`);
 
-const result = spawnSync(
-  'npm',
-  ['publish', '--registry', 'https://npm.pkg.github.com'],
-  {
-    cwd: root,
-    stdio: 'inherit',
-    env: {
-      ...process.env,
-      NODE_AUTH_TOKEN: process.env.GITHUB_TOKEN || process.env.NODE_AUTH_TOKEN,
-    },
+try {
+  const result = spawnSync(
+    'npm',
+    ['publish', '--registry', 'https://npm.pkg.github.com'],
+    {
+      cwd: root,
+      stdio: 'inherit',
+      env: {
+        ...process.env,
+        NODE_AUTH_TOKEN: process.env.GITHUB_TOKEN || process.env.NODE_AUTH_TOKEN,
+      },
+    }
+  );
+
+  if (result.status !== 0) {
+    process.exit(result.status || 1);
   }
-);
-
-fs.writeFileSync(pkgPath, original);
-
-if (result.status !== 0) {
-  process.exit(result.status || 1);
+}
+finally {
+  fs.writeFileSync(pkgPath, original);
 }
