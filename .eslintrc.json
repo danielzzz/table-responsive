@@ -10,6 +10,15 @@
 		"browser": true,
 		"node": true
 	},
+	"overrides": [
+		{
+			"files": ["scripts/**/*.js"],
+			"parserOptions": {
+				"ecmaVersion": 2020,
+				"sourceType": "script"
+			}
+		}
+	],
 	"rules": {
 		"semi": 1,
 		"no-dupe-args": 1,
